@@ -28,7 +28,7 @@
 
 <img src="images/create1.png" alt="创建 Sitemap 第一步" width="500px">
 
-接下来，填入你想要建立的爬取任务名称（例如 `douban250`）和目标链接，然后点击 **Create Sitemap**。  
+接下来，填入你想要建立的爬取任务名称（例如 `douban`）和目标链接，然后点击 **Create Sitemap**。  
 
 <img src="images/create2.png" alt="填写信息" width="500px">
 
@@ -48,34 +48,13 @@
 
 ## 3️⃣ 简单爬取
 
-点击左侧的 **Sitemaps**，找到你刚刚创建的 sitemap，点击进入管理页面。  
+点击左侧的 **Sitemaps**，找到你刚刚创建的 sitemap，点击进入管理页面：在 **Sitemap douban** 页面中，点击 **Scrape** 即可开始运行爬取任务。。  
 
 <img src="images/scrape1.png" alt="进入 Sitemap 管理" width="500px">
-
-在 **Sitemap douban** 页面中，点击 **Scrape** 即可开始运行爬取任务。  
+  
 一般默认的两个数值都是 `2000`，可以保持不变，直接点击 **Start Scraping**。  
 
 <img src="images/scrape2.png" alt="开始爬取" width="500px">
 
 ---
 
-## ✅ 小结
-
-到这里，你已经完成了最简单的 Web Scraper 配置：  
-- 创建 Sitemap  
-- 配置要爬取的元素（Selector）  
-- 启动爬取并获取结果  
-
-后续可以尝试：  
-- 添加更多 Selector（如评分、导演）  
-- 爬取多页数据  
-- 将数据导出为 CSV / Excel  
-
----
-
-## 📌 提示：如何让图片更美观？
-
-你的截图大小不一致，可以在 Markdown 里用 `<img>` 标签统一设置宽度，例如：  
-
-```markdown
-<img src="images/xxx.png" alt="描述文字" width="500px">
