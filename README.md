@@ -105,21 +105,88 @@
 - **导出 Sitemap**  
   在 **Sitemap douban** 页面点击 **Export Sitemap**，复制全部内容后即可分享。  
 
-<img src="images/export.png" alt="导出 Sitemap" width="500px">
+  <img src="images/export.png" alt="导出 Sitemap" width="500px">
 
 - **导入 Sitemap**  
   点击 **Create new sitemap** → **Import Sitemap**，粘贴内容后即可创建。  
 
-<img src="images/import.png" alt="导入 Sitemap" width="500px">
+  <img src="images/import.png" alt="导入 Sitemap" width="500px">
 
 ---
 
 ## 7️⃣ 爬取多个网页的多条信息
 
-除了电影名称，你也可以在同一个 Sitemap 中添加多个 Selector，例如：  
-- 电影名称  
-- 评分  
-- 简介  
+如果我们想要同时爬取一个电影的 **排名、名称、评价** 等多条信息，可以使用 **Element Selector** 作为容器，然后在其下创建多个子 Selector 来获取不同类型的数据。  
 
-配置多个 Selector 后，Web Scraper 会自动爬取并输出对应的数据列，方便进一步分析。  
+### 步骤 1：创建 Element Selector  
+首先，创建一个新的 Selector，并将 **Type** 设置为 `Element`。  
+
+<img src="images/mul_information1.png" alt="创建 Element Selector" width="500px">
+
+### 步骤 2：在 Element 下创建子 Selector  
+进入该 Element，在此页面下新建多个子 Selector，例如：  
+- `rank`：排名  
+- `name`：电影名称  
+- `remark`：电影评价  
+
+此时可以看到，所有子 Selector 的父选择器均为 `douban`。  
+
+<img src="images/mul_information2.png" alt="创建子 Selector" width="500px">
+
+### 步骤 3：运行爬取任务  
+重新执行 **Scrape**，稍等片刻，即可获得完整的结果。  
+
+<img src="images/mul_information3.png" alt="多字段爬取结果" width="500px">
+
+---
+
+## 📄 示例 Sitemap 配置
+
+以下是一个示例 Sitemap，你可以直接复制后导入 Web Scraper 使用：  
+
+```json
+{
+  "_id": "douban",
+  "startUrl": ["https://movie.douban.com/top250?start=[0-225:25]&filter="],
+  "selectors": [
+    {
+      "id": "douban",
+      "type": "SelectorElement",
+      "parentSelectors": ["_root"],
+      "selector": ".grid_view li",
+      "multiple": true,
+      "elementLimit": 0,
+      "scroll": false
+    },
+    {
+      "id": "name",
+      "type": "SelectorText",
+      "parentSelectors": ["douban"],
+      "selector": "span.title:nth-of-type(1)",
+      "multiple": false,
+      "regex": "",
+      "multipleType": "singleColumn"
+    },
+    {
+      "id": "rank",
+      "type": "SelectorText",
+      "parentSelectors": ["douban"],
+      "selector": "em",
+      "multiple": false,
+      "regex": "",
+      "multipleType": "singleColumn"
+    },
+    {
+      "id": "remark",
+      "type": "SelectorText",
+      "parentSelectors": ["douban"],
+      "selector": ".quote span",
+      "multiple": false,
+      "regex": "",
+      "multipleType": "singleColumn"
+    }
+  ]
+}
+
+## 8 处理动态加载 - 加载更多的解决办法
 
