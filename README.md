@@ -80,7 +80,7 @@
 
 ---
 
-## 5️⃣ 爬取多个网页的信息
+## 5️⃣ 多个网页的信息--进阶请看13
 
 豆瓣链接格式说明：  
 
@@ -114,7 +114,7 @@
 
 ---
 
-## 7️⃣ 爬取多个网页的多条信息
+## 7️⃣ 多个网页的多条信息
 
 如果我们想要同时爬取一个电影的 **排名、名称、评价** 等多条信息，可以使用 **Element Selector** 作为容器，然后在其下创建多个子 Selector 来获取不同类型的数据。  
 
@@ -187,6 +187,52 @@
     }
   ]
 }
+````
 
-## 8 处理动态加载 - 加载更多的解决办法
+---
 
+## 8️⃣ 处理动态加载 - 加载更多的解决办法
+
+有些网站不是一次性加载所有数据，而是通过点击 **“加载更多”** 按钮或滚动页面来获取新内容。
+* [Quotes to Scrape - Scroll](https://quotes.toscrape.com/scroll) （无限滚动示例）
+* [Books to Scrape](https://books.toscrape.com/) （分页示例）
+
+---
+
+## 9️⃣ 控制抓取数量
+
+在一些网站（如 [Quotes to Scrape](https://quotes.toscrape.com/scroll)）中，页面会采用无限滚动的方式加载更多数据。
+如果不加限制，插件会一直抓取，直到页面加载完成或网络断开。
+
+我们可以通过 **CSS 伪类选择器** 限制抓取数量：
+
+* 假设 selector 为 `dl.article-card`，会默认抓取网页中所有的 `dl.article-card` 元素。
+* 在选择器后加上 `:nth-of-type(-n+100)`，表示只抓取前 **100 条** 数据。
+* 如果想抓取前 **200 条**，则写为 `:nth-of-type(-n+200)`，以此类推。
+
+<img src="images/num.png" alt="限制抓取数量" width="500px">
+
+---
+
+## 🔟 滚动加载类型网页
+
+有些页面使用 **无限滚动 (Infinite Scroll)** 技术来动态加载内容。
+* [Quotes to Scrape - Scroll](https://quotes.toscrape.com/scroll)
+* 新闻网站（如 BBC 或 CNN 的部分栏目页）
+
+---
+
+## 1️⃣1️⃣ 内容为超链接
+
+如果我们不仅要获取文本，还要抓取其 **链接地址**：
+
+---
+
+## 1️⃣2️⃣ 表格数据
+
+很多网站的数据会以 **表格 (table)** 的形式呈现，例如 Wikipedia 的统计表。
+* [Wikipedia - List of countries by GDP](https://en.wikipedia.org/wiki/List_of_countries_by_GDP_%28nominal%29)
+
+```
+
+13 
