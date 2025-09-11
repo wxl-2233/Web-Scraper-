@@ -112,18 +112,17 @@
 
 ---
 
-## 7️⃣ 控制抓取数量
+## 7️⃣ 控制抓取数量--进阶看特例
 
 在一些网站（如 [Quotes to Scrape](https://quotes.toscrape.com/scroll)）中，页面会采用无限滚动的方式加载更多数据。  
 如果不加限制，插件会一直抓取，直到页面加载完成或网络断开。  
-
-我们可以通过 **CSS 伪类选择器** 限制抓取数量：  
-
-- 假设 selector 为 `dl.article-card`，会默认抓取网页中所有的 `dl.article-card` 元素。  
+  
 - 在选择器后加上 `:nth-of-type(-n+100)`，表示只抓取前 **100 条** 数据。  
 - 如果想抓取前 **200 条**，则写为 `:nth-of-type(-n+200)`，以此类推。  
 
 <img src="images/num.png" alt="限制抓取数量" width="500px">
+
+> 注：该方法只对点击更多型网页或者加载更多型网页有效，如果是翻页型网页，翻页之后n会重新开始计数，这时只能采取断网操作来停止爬取。
 
 ---
 
@@ -164,10 +163,17 @@ Web Scraper 插件提供了多种 Selector 类型，使用方法类似，只是�
 
 5. **Element Click**  
    - 用于点击操作，例如分页器、加载更多。  
+   - 注意：Click 用来处理分页器，必须是点击后**不刷新**的网页；如果网页会刷新，请看“特例”部分。  
+     > 注：当一个 URL 链接是 `#` 字符后数据变化时，网页不会刷新；当链接其他部分变化时，网页会刷新。  
+
+6. **Element Attribute**  
+   - 用于爬取元素属性。  
+   - 例如：`<img src="images/mul_information1.png" alt="创建 Element Selector" width="500px">`  
+     可以直接在 **Attribute name** 中输入 `src`、`alt` 或 `width` 来抓取属性值。  
 
 ---
 
-## 示例：Element Selector 多字段爬取
+## 🔹 示例：Element Selector 多字段爬取
 
 如果我们想要同时爬取一部电影的 **排名、名称、评价** 等多条信息，可以使用 **Element Selector** 作为容器，然后在其下创建多个子 Selector 来获取不同类型的数据。  
 
@@ -240,27 +246,93 @@ Web Scraper 插件提供了多种 Selector 类型，使用方法类似，只是�
 }
 
 ```
+---
 
-## 示例：Click Selector 分页爬取
+## 🔹 示例：Click / Link Selector
 
-对于分页或“加载更多”的场景，可以使用 **Element Click**：  
+Web Scraper 提供了 **Click Selector** 和 **Link Selector**，可以处理分页、加载更多和跳转等操作。
 
-- 将 Selector 类型设置为 **`Element Click`**  
-- 在 **Click selector** 中指定按钮的 CSS 选择器  
-- 插件会模拟点击，加载新的数据，直到达到设定的次数或页面没有更多数据  
+- **Click Selector**：用于模拟点击“加载更多”或分页按钮。  
+- **Link Selector**：用于获取文本和超链接。  
 
 <img src="images/click.png" alt="Click Selector 示例" width="500px">  
 <img src="images/paging1.png" alt="分页示例 1" width="500px">  
-<img src="images/paging2.png" alt="分页示例 2" width="500px">
+<img src="images/paging2.png" alt="分页示例 2" width="500px">  
+<img src="images/link1.png" alt="Link Selector 示例" width="500px">
 
 ---
 
-##  示例：Link Selector 获取链接
+## 🔹 特例：刷新的分页界面
 
-在很多场景下，我们不仅需要文本信息，还需要获取对应的 **超链接**。  
-这时可以使用 **Link Selector**：  
+通过 **Link Selector + Element Selector** 配合爬取：
 
-- 将 Selector 类型设置为 **`Link`**  
-- 插件会同时抓取元素的文字内容和其对应的链接 URL   
+### 操作步骤
 
-<img src="images/link1.png" alt="Link Selector 示例" width="500px">
+1. **创建翻页选择器**  
+   - 使用 **Link Selector** 选择“下一页”按钮，命名为 `next_page`。  
+
+2. **设置父节点**  
+   - 在 `next_page` 的 **Parent Selectors** 中，同时选择 `_root` 和 `next_page`。  
+   - 方法：按住 `Shift` 键，多选父节点。  
+
+3. **创建数据容器**  
+   - 在 `next_page` 的同级下创建一个 **Element Selector**，命名为 `container`，用于抓取电影数据。  
+
+### 注意事项
+
+- 翻页选择器 `next_page` 和数据选择器 `container` 是 **同一级**。  
+- 它们的父节点都是 `_root` 和 `next_page`。  
+- 这种递归结构可以保证爬虫不断翻页并采集数据。  
+
+<img src="images/web-scraper-tree.png" alt="Web Scraper 结构树" width="500px">
+
+---
+
+## 🔹 特例：CSS 选择器
+
+Web Scraper 的 Selector 底层依赖 **CSS 选择器**，可以更灵活地定位页面元素。  
+
+### 1. 标签选择器
+- 格式：`标签名`  
+- 例如：`li` 会选中所有 `<li>` 标签。  
+- 豆瓣、读书等网站列表通常由 `<li>` 标签构成。  
+
+<img src="images/css1.png" alt="标签选择器示例 1" width="500px">  
+<img src="images/css2.png" alt="标签选择器示例 2" width="500px">  
+
+---
+
+### 2. class 选择器
+- 格式：`.classname` 或 `li.classname`  
+- 作用：选中所有带有 `class="classname"` 的标签。  
+
+---
+
+### 3. id 选择器
+- 格式：`#idname`  
+- 作用：选中所有带有 `id="idname"` 的标签。  
+
+---
+
+### 4. 属性选择器
+- 格式：`x[attribute]` 或 `x[attribute=value]`  
+- 例如：`img[src]` 可以选中所有带 `src` 属性的 `<img>` 标签。  
+
+---
+
+### 5. 后代元素选择器
+- 格式：`父元素 子元素`  
+- 示例：  
+  - `div.family li`  
+  - `div.family div span`  
+  - `div.family span#idname`  
+- 注意：**中间的空格不能省略**。  
+
+---
+
+### 6. 指定子元素位置
+- 使用 `:nth-of-type(n)` 精确选中某个位置的元素。  
+- 示例：  
+  - `li:nth-of-type(2)` 表示选择第 2 个 `<li>` 标签。
+ 
+---    
