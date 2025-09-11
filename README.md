@@ -284,7 +284,7 @@ Web Scraper 提供了 **Click Selector** 和 **Link Selector**，可以处理分
 - 它们的父节点都是 `_root` 和 `next_page`。  
 - 这种递归结构可以保证爬虫不断翻页并采集数据。  
 
-<img src="images/web-scraper-tree.png" alt="Web Scraper 结构树" width="500px">
+<img src="images/结构树.png" alt="Web Scraper 结构树" width="500px">
 
 ---
 
