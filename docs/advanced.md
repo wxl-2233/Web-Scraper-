@@ -13,7 +13,7 @@
 
 对于豆瓣 Top250，可以改写为： ` https://movie.douban.com/top250?start=[0-225:25]&filter=`
 
-这样 Web Scraper 将遍历所有页（0,25,50,...,225）并抓取每页内容。
+这样 Web Scraper 将遍历所有页（0, 25, 50, ..., 225）并抓取每页内容。
 
 <img src="../images/scrape6.png" alt="分页爬取结果" width="500px">
 
