@@ -4,12 +4,14 @@
 
 豆瓣 Top250 的分页示例：
 
-- 第一页：`https://movie.douban.com/top250?start=0&filter=` （显示 1–25）  
-- 第二页：`https://movie.douban.com/top250?start=25&filter=` （显示 26–50）
+- 第一页：`https://movie.douban.com/top250?start=0&filter=` （从第 1 部电影开始，展示 1–25）  
+- 第二页：`https://movie.douban.com/top250?start=25&filter=` （从第 26 部电影开始，展示 26–50）
 
-如果页面 URL 可按数字递增，可使用范围写法，例如：  http://example.com/page/[1-3]
+如果页面 URL 可按数字递增，可使用范围写法.
+如网页链接类似： `http://example.com/page/1`  `http://example.com/page/2`  
+则可以写成： `http://example.com/page/[1-3]`
 
-对于豆瓣 Top250，可写成：  https://movie.douban.com/top250?start=[0-225:25]&filter=
+对于豆瓣 Top250，可以改写为： ` https://movie.douban.com/top250?start=[0-225:25]&filter=`
 
 这样 Web Scraper 将遍历所有页（0,25,50,...,225）并抓取每页内容。
 
@@ -19,9 +21,11 @@
 
 ## 2️⃣ 控制抓取数量（限制条目）
 
-在无限滚动或“加载更多”页面，若不加限制可能会一直抓取。可在选择器后使用 `:nth-of-type` 限制输出：
+在一些网站（如 [Quotes to Scrape](https://quotes.toscrape.com/scroll)）中，页面会采用无限滚动的方式不断加载更多数据，若不加限制可能会一直抓取，直到页面加载完成或网络断开。
 
-- 例如：`selector:nth-of-type(-n+100)` → 只抓前 **100** 条。  
+可在选择器后使用 `:nth-of-type` 限制输出：
+
+- 如 `selector:nth-of-type(-n+100)` → 只抓前 **100** 条。  
 - 改为 `-n+200` 则抓前 **200** 条。
 
 <img src="../images/num.png" alt="限制抓取数量" width="500px">
