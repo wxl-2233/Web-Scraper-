@@ -1,57 +1,30 @@
-# 🕷️ Web Scraper 教程操作指南
+# 🕸️ Web Scraper 使用指南（导航页）
 
-本仓库带你从零开始学习如何使用 **Web Scraper 插件** 爬取网页数据。  
-教程分为 **基础 → 进阶 → 深入 → 特例** 四个阶段，循序渐进，帮助你从零快速上手，再逐步掌握复杂场景。
+本仓库使用 Web Scraper 插件作为示例工具，按章节将教程拆成若干可独立阅读的文档，便于学习与维护。所有正文位于 `docs/`，截图统一放在仓库根目录的 `images/` 文件夹中。
 
----
+## 文档一览（按学习顺序）
 
-## 📚 学习路径
+- [基础篇](docs/基础篇.md)  
+  介绍：从打开开发者工具到创建 Sitemap、添加 Selector、运行简单爬取与数据导出（包含对应截图与操作提示）。
+  主要包含：
+  - 打开开发者工具
+  - 创建 Sitemap
+  - 创建 Selector（选择元素、Multiple Type 预览）
+  - 运行简单爬取 + 导出数据
+  - 导入 / 导出 Sitemap
 
-1. [基础篇 · Basic](docs/basic.md)  
-   - 安装与打开 Web Scraper  
-   - 创建 Sitemap  
-   - 添加 Selector  
-   - 简单数据导出  
-   👉 适合第一次接触爬虫的用户
+- [进阶篇](docs/进阶篇.md)  
+  介绍：处理多页面的抓取、限制抓取条数、设置抓取间隔等提升稳定性与效率的操作。
+  主要包含：
+  - 多页面 / 范围 URL 写法
+  - 控制抓取数量（`:nth-of-type` 限制）
+  - 设置爬取时间间隔
 
-2. [进阶篇 · Advanced](docs/advanced.md)  
-   - 多页面爬取（分页、URL 范围）  
-   - 控制抓取数量  
-   - 设置爬取时间间隔  
-   - 导入与导出 Sitemap  
-   👉 适合完成入门后想采集更大规模数据的用户
+- [Selector 篇](docs/Selector篇.md)  
+  介绍：逐一说明 Web Scraper 中常用的 Selector 类型与适用场景，并给出属性抓取与正则应用场景示例。
 
-3. [Selector 篇 · Selectors](docs/selectors.md)  
-   - 各类 Selector 的使用方法（Element / Link / Table / Click 等）  
-   - 正则表达式速查表 & 重复匹配  
-   - CSS 选择器语法  
-   👉 适合作为 **工具手册** 随查随用
+- [正则资源篇](docs/正则资源篇.md)  
+  介绍：常用正则速查表、重复匹配说明，以及 Web Scraper 内置正则的局限性提示（便于查阅）。
 
-4. [特例篇 · Special Cases](docs/special_cases.md)  
-   - 刷新分页（递归结构树）  
-   - 无限滚动页面  
-   - 点击加载更多  
-   👉 适合解决实际采集中遇到的“疑难杂症”
-
----
-
-## 📂 示例资源
-
-- [豆瓣 Top 250 Sitemap](examples/douban_sitemap.json)  
-- [Click Selector 示例](examples/click_demo.json)  
-- [截图集](images/)
-
----
-
-## 💡 学习建议
-
-- **新手**：从 [基础篇](docs/basic.md) 开始，先成功跑通第一个爬虫  
-- **进阶**：完成 [进阶篇](docs/advanced.md)，掌握多页面与大规模数据采集  
-- **查阅**：遇到具体问题时，直接翻 [Selector 篇](docs/selectors.md)  
-- **实战**：遇到特殊网站结构，再看 [特例篇](docs/special_cases.md)  
-
----
-
-## 🤝 贡献
-
-如果你有新的示例 sitemap 或技巧，欢迎提交 PR，一起完善这份学习指南！
+- [应用与特例篇](docs/应用与特例篇.md)  
+  介绍：组合示例（Element + 子 Selector）、Click/Link 分页示例、刷新分页的递归结构、CSS 选择器细节与结构树示意等实战内容。
