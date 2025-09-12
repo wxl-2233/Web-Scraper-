@@ -12,7 +12,7 @@
 
 在开发者工具的菜单中可以看到 **Web Scraper** 选项，点击进入。  
 
-<img src="images/FindScraper.png" alt="打开 Web Scraper" width="500px">
+<img src="../images/FindScraper.png" alt="打开 Web Scraper" width="500px">
 
 ---
 
