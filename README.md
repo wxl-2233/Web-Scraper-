@@ -1,6 +1,9 @@
 # 🕸️ Web Scraper 使用指南
 
 本仓库使用 Web Scraper 插件作为示例工具，按章节将教程拆成若干可独立阅读的文档，便于学习与维护。
+
+我们将以爬取 **豆瓣电影 Top 250** 为例，目标链接：[豆瓣电影 Top 250](https://movie.douban.com/top250?start=0&filter=)
+
 所有正文位于 `docs/`，截图统一放在仓库根目录的 `images/` 文件夹中。
 
 ## 文档一览
