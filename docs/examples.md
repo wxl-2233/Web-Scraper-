@@ -5,7 +5,7 @@
 ### 步骤 1：创建 Element Selector  
 新建一个 Selector，并将 **Type** 设置为 `Element`。  
 
-<img src="images/mul_information1.png" alt="创建 Element Selector" width="500px">
+<img src="../images/mul_information1.png" alt="创建 Element Selector" width="500px">
 
 ### 步骤 2：在 Element 下创建子 Selector  
 进入该 Element，在此页面下新建多个子 Selector，例如：  
@@ -15,12 +15,12 @@
 
 此时可以看到，所有子 Selector 的父选择器均为 `douban`。  
 
-<img src="images/mul_information2.png" alt="创建子 Selector" width="500px">
+<img src="../images/mul_information2.png" alt="创建子 Selector" width="500px">
 
 ### 步骤 3：运行爬取任务  
 重新执行 **Scrape**，稍等片刻，即可获得完整的结果。  
 
-<img src="images/mul_information3.png" alt="多字段爬取结果" width="500px">
+<img src="../images/mul_information3.png" alt="多字段爬取结果" width="500px">
 
 ---
 
@@ -80,10 +80,10 @@ Web Scraper 提供了 **Click Selector** 和 **Link Selector**，可以处理分
 - **Click Selector**：用于模拟点击“加载更多”或分页按钮。  
 - **Link Selector**：用于获取文本和超链接。  
 
-<img src="images/click.png" alt="Click Selector 示例" width="500px">  
-<img src="images/paging1.png" alt="分页示例 1" width="500px">  
-<img src="images/paging2.png" alt="分页示例 2" width="500px">  
-<img src="images/link1.png" alt="Link Selector 示例" width="500px">
+<img src="../images/click.png" alt="Click Selector 示例" width="500px">  
+<img src="../images/paging1.png" alt="分页示例 1" width="500px">  
+<img src="../images/paging2.png" alt="分页示例 2" width="500px">  
+<img src="../images/link1.png" alt="Link Selector 示例" width="500px">
 
 ---
 
@@ -109,7 +109,7 @@ Web Scraper 提供了 **Click Selector** 和 **Link Selector**，可以处理分
 - 它们的父节点都是 `_root` 和 `next_page`。    
 - 这种递归结构可以保证爬虫不断翻页并采集数据。  
 
-<img src="images/结构树.png" alt="Web Scraper 结构树" width="500px">
+<img src="../images/结构树.png" alt="Web Scraper 结构树" width="500px">
 
 ---
 
@@ -122,8 +122,8 @@ Web Scraper 的 Selector 底层依赖 **CSS 选择器**，可以更灵活地定�
 - 例如：`li` 会选中所有 `<li>` 标签。  
 - 豆瓣、读书等网站列表通常由 `<li>` 标签构成。  
 
-<img src="images/css1.png" alt="标签选择器示例 1" width="500px">  
-<img src="images/css2.png" alt="标签选择器示例 2" width="500px">  
+<img src="../images/css1.png" alt="标签选择器示例 1" width="500px">  
+<img src="../images/css2.png" alt="标签选择器示例 2" width="500px">  
 
 ---
 
