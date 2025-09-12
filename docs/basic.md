@@ -60,6 +60,7 @@
 <img src="../images/scrape4.png" alt="爬取结果 2" width="500px">  
 <img src="../images/scrape5.png" alt="爬取结果 3" width="500px">
 > 注：以上为三种 selector 的 `multiple type` 输出效果。  
+
 ---
 
 ## 5️⃣ 导入与导出 Sitemap
